@@ -1,357 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Medical Certificate Generator</title>
-  <style>
-    :root {
-      --primary-color: #3a86ff;
-      --primary-dark: #2970e3;
-      --secondary-color: #8ecae6;
-      --text-color: #333;
-      --bg-color: #f7fafc;
-      --card-bg: #ffffff;
-      --error-color: #dc3545;
-      --success-color: #28a745;
-    }
-    
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    body {
-      background-color: var(--bg-color);
-      background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    
-    .container {
-      background: var(--card-bg);
-      padding: 35px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      max-width: 550px;
-      width: 100%;
-    }
-    
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    
-    .header h2 {
-      color: var(--text-color);
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-    
-    .header .subtitle {
-      color: #777;
-      font-size: 14px;
-    }
-    
-    .form-group {
-      margin-bottom: 20px;
-    }
-    
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: var(--text-color);
-      font-size: 14px;
-    }
-    
-    input[type="text"],
-    input[type="date"],
-    input[type="password"] {
-      width: 100%;
-      padding: 12px 15px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      outline: none;
-      transition: all 0.3s;
-      font-size: 15px;
-      background-color: #fafafa;
-    }
-    
-    input[type="text"]:focus,
-    input[type="date"]:focus,
-    input[type="password"]:focus {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.1);
-      background-color: #fff;
-    }
-    
-    button {
-      width: 100%;
-      padding: 14px;
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 10px;
-    }
-    
-    button:hover {
-      background-color: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    
-    button:active {
-      transform: translateY(0);
-    }
-    
-    .gender-options {
-      display: flex;
-      gap: 15px;
-    }
-    
-    .gender-option {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    
-    .gender-option.selected {
-      background-color: var(--primary-color);
-      color: white;
-      border-color: var(--primary-color);
-    }
-    
-    .form-row {
-      display: flex;
-      gap: 15px;
-    }
-    
-    .form-row .form-group {
-      flex: 1;
-    }
-    
-    .error-message {
-      color: var(--error-color);
-      font-size: 14px;
-      margin-top: 5px;
-      display: none;
-    }
-
-    .password-container {
-      display: none;
-      margin-top: 20px;
-      padding: 20px;
-      background-color: #f1f8ff;
-      border-radius: 8px;
-      border-left: 4px solid var(--primary-color);
-    }
-    
-    .success-message {
-      text-align: center;
-      color: var(--success-color);
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 20px;
-      display: none;
-    }
-    
-    /* Animation */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .fade-in {
-      animation: fadeIn 0.5s ease forwards;
-    }
-    
-    @media (max-width: 600px) {
-      .container {
-        padding: 25px 20px;
-      }
-      
-      .form-row {
-        flex-direction: column;
-        gap: 0;
-      }
-      
-      .header h2 {
-        font-size: 24px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Medical Certificate Generator</title>
+    <style>
+        /* Reset some basic styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f5ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            background: #fff;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            max-width: 550px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group {
+            margin-bottom: 18px;
+        }
+        
+        label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #34495e;
+            display: block;
+        }
+        
+        input[type="text"], 
+        input[type="date"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #dce4ec;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s;
+            font-size: 15px;
+            background-color: #f9fafc;
+        }
+        
+        input[type="text"]:focus, 
+        input[type="date"]:focus,
+        input[type="password"]:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+            background-color: #fff;
+        }
+        
+        button {
+            padding: 14px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            letter-spacing: 0.5px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .gender-options {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .gender-option {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        .gender-option input {
+            margin-right: 8px;
+        }
+        
+        .password-container {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            input[type="text"], 
+            input[type="date"],
+            input[type="password"] {
+                font-size: 14px;
+                padding: 10px;
+            }
+            
+            button {
+                font-size: 15px;
+                padding: 12px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h2>Medical Certificate Generator</h2>
-      <p class="subtitle">Complete the form to generate a professional medical certificate</p>
+    <div class="container">
+        <div class="header">
+            <h2>Medical Certificate Generator</h2>
+            <p class="subtitle">Fill out the form to generate an official medical certificate</p>
+        </div>
+        
+        <form id="certificateForm">
+            <div class="form-group">
+                <label for="patient_name">Patient Name</label>
+                <input type="text" id="patient_name" name="patient_name" required placeholder="Enter full name">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="patient_age">Patient Age</label>
+                    <input type="text" id="patient_age" name="patient_age" required placeholder="Age">
+                </div>
+                
+                <div class="form-group">
+                    <label>Patient Gender</label>
+                    <div class="gender-options">
+                        <div class="gender-option">
+                            <input type="radio" id="gender_male" name="patient_gender" value="Male">
+                            <label for="gender_male">Male</label>
+                        </div>
+                        <div class="gender-option">
+                            <input type="radio" id="gender_female" name="patient_gender" value="Female">
+                            <label for="gender_female">Female</label>
+                        </div>
+                        <div class="gender-option">
+                            <input type="radio" id="gender_other" name="patient_gender" value="Other">
+                            <label for="gender_other">Other</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="test_date">Test Date</label>
+                    <input type="date" id="test_date" name="test_date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="report_date">Report Date</label>
+                    <input type="date" id="report_date" name="report_date" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="referring_doctor">Referring Doctor</label>
+                    <input type="text" id="referring_doctor" name="referring_doctor" placeholder="Optional">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signing_doctor">Signing Doctor</label>
+                    <input type="text" id="signing_doctor" name="signing_doctor" placeholder="Doctor's name">
+                </div>
+            </div>
+            
+            <button type="button" id="submitBtn">Generate PDF</button>
+            
+            <div id="passwordContainer" class="password-container">
+                <div class="form-group">
+                    <label for="password">Enter Password to Generate PDF</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password">
+                    <p id="errorMessage" class="error-message">Incorrect password. Please try again.</p>
+                </div>
+                <button type="button" id="verifyBtn">Verify & Generate</button>
+            </div>
+        </form>
     </div>
     
-    <form id="certificateForm">
-      <div class="form-group">
-        <label for="patient_name">Patient Name</label>
-        <input type="text" id="patient_name" name="patient_name" placeholder="Enter full name" required>
-      </div>
-      
-      <div class="form-row">
-        <div class="form-group">
-          <label for="patient_age">Patient Age</label>
-          <input type="text" id="patient_age" name="patient_age" placeholder="Age" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="patient_gender">Gender</label>
-          <div class="gender-options">
-            <div class="gender-option" data-value="Male" onclick="selectGender(this)">Male</div>
-            <div class="gender-option" data-value="Female" onclick="selectGender(this)">Female</div>
-            <div class="gender-option" data-value="Other" onclick="selectGender(this)">Other</div>
-          </div>
-          <input type="hidden" id="patient_gender" name="patient_gender" required>
-        </div>
-      </div>
-      
-      <div class="form-row">
-        <div class="form-group">
-          <label for="test_date">Test Date</label>
-          <input type="date" id="test_date" name="test_date" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="report_date">Report Date</label>
-          <input type="date" id="report_date" name="report_date" required>
-        </div>
-      </div>
-      
-      <div class="form-row">
-        <div class="form-group">
-          <label for="referring_doctor">Referring Doctor</label>
-          <input type="text" id="referring_doctor" name="referring_doctor" placeholder="If applicable">
-        </div>
-        
-        <div class="form-group">
-          <label for="signing_doctor">Signing Doctor</label>
-          <input type="text" id="signing_doctor" name="signing_doctor" placeholder="Doctor issuing certificate" required>
-        </div>
-      </div>
-      
-      <button type="button" id="generateBtn">Generate Certificate</button>
-      
-      <div class="password-container" id="passwordContainer">
-        <div class="form-group">
-          <label for="password">Security Password</label>
-          <input type="password" id="password" name="password" placeholder="Enter password to continue">
-          <div class="error-message" id="passwordError">Incorrect password. Please try again.</div>
-        </div>
-        <button type="button" id="submitPasswordBtn">Generate PDF</button>
-      </div>
-      
-      <div class="success-message" id="successMessage">
-        Certificate generated successfully! Downloading PDF...
-      </div>
-    </form>
-  </div>
-
-  <script>
-    // Set today's date as the default for date inputs
-    document.addEventListener('DOMContentLoaded', function() {
-      const today = new Date().toISOString().split('T')[0];
-      document.getElementById('test_date').value = today;
-      document.getElementById('report_date').value = today;
-    });
-    
-    // Gender selection
-    function selectGender(element) {
-      // Remove selected class from all options
-      const options = document.querySelectorAll('.gender-option');
-      options.forEach(opt => opt.classList.remove('selected'));
-      
-      // Add selected class to clicked option
-      element.classList.add('selected');
-      
-      // Update hidden input
-      document.getElementById('patient_gender').value = element.dataset.value;
-    }
-    
-    // Generate button click handler
-    document.getElementById('generateBtn').addEventListener('click', function() {
-      // Validate form
-      const form = document.getElementById('certificateForm');
-      if (!validateForm()) {
-        return;
-      }
-      
-      // Show password container with animation
-      const passwordContainer = document.getElementById('passwordContainer');
-      passwordContainer.style.display = 'block';
-      passwordContainer.classList.add('fade-in');
-      
-      // Focus on password field
-      document.getElementById('password').focus();
-    });
-    
-    // Submit password button handler
-    document.getElementById('submitPasswordBtn').addEventListener('click', function() {
-      const password = document.getElementById('password').value;
-      const passwordError = document.getElementById('passwordError');
-      
-      if (password === 'medical_certificate') {
-        // Password correct - generate PDF
-        passwordError.style.display = 'none';
-        
-        // Show success message
-        document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('successMessage').classList.add('fade-in');
-        
-        // In a real application, this would submit the form to generate the PDF
-        setTimeout(() => {
-          // Simulating PDF generation with form submit
-          document.getElementById('certificateForm').submit();
-        }, 1500);
-      } else {
-        // Password incorrect - show error
-        passwordError.style.display = 'block';
-        document.getElementById('password').focus();
-      }
-    });
-    
-    // Form validation
-    function validateForm() {
-      let isValid = true;
-      
-      // Check required fields
-      const requiredFields = ['patient_name', 'patient_age', 'patient_gender', 'test_date', 'report_date', 'signing_doctor'];
-      
-      requiredFields.forEach(field => {
-        const input = document.getElementById(field);
-        if (!input.value) {
-          input.style.borderColor = 'var(--error-color)';
-          isValid = false;
-        } else {
-          input.style.borderColor = '#ddd';
-        }
-      });
-      
-      return isValid;
-    }
-  </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('certificateForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const passwordContainer = document.getElementById('passwordContainer');
+            const verifyBtn = document.getElementById('verifyBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Set current date as default for dates
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('test_date').value = today;
+            document.getElementById('report_date').value = today;
+            
+            // Show password field when Generate PDF is clicked
+            submitBtn.addEventListener('click', function() {
+                // Basic form validation
+                const inputs = form.querySelectorAll('input[required]');
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    if (!input.value) {
+                        input.style.borderColor = '#e74c3c';
+                        isValid = false;
+                    } else {
+                        input.style.borderColor = '#dce4ec';
+                    }
+                });
+                
+                // Check if gender is selected
+                const genderSelected = document.querySelector('input[name="patient_gender"]:checked');
+                if (!genderSelected) {
+                    document.querySelector('.gender-options').style.outline = '1px solid #e74c3c';
+                    isValid = false;
+                } else {
+                    document.querySelector('.gender-options').style.outline = 'none';
+                }
+                
+                if (isValid) {
+                    submitBtn.style.display = 'none';
+                    passwordContainer.style.display = 'block';
+                    scrollTo(0, document.body.scrollHeight);
+                }
+            });
+            
+            // Verify password and submit form
+            verifyBtn.addEventListener('click', function() {
+                const password = document.getElementById('password').value;
+                
+                if (password === 'medical_certificate') {
+                    // Create a new form and submit to backend
+                    const formData = new FormData(form);
+                    
+                    // Add gender value to form data
+                    const genderValue = document.querySelector('input[name="patient_gender"]:checked').value;
+                    
+                    const submitForm = document.createElement('form');
+                    submitForm.method = 'POST';
+                    submitForm.action = '/generate_pdf';
+                    
+                    // Add all form fields to the submit form
+                    for (const [key, value] of formData.entries()) {
+                        if (key !== 'patient_gender') { // Skip the radio buttons
+                            const input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = key;
+                            input.value = value;
+                            submitForm.appendChild(input);
+                        }
+                    }
+                    
+                    // Add the selected gender value
+                    const genderInput = document.createElement('input');
+                    genderInput.type = 'hidden';
+                    genderInput.name = 'patient_gender';
+                    genderInput.value = genderValue;
+                    submitForm.appendChild(genderInput);
+                    
+                    // Append to body and submit
+                    document.body.appendChild(submitForm);
+                    submitForm.submit();
+                } else {
+                    errorMessage.style.display = 'block';
+                    document.getElementById('password').style.borderColor = '#e74c3c';
+                }
+            });
+            
+            // Reset error styling on input
+            document.querySelectorAll('input').forEach(input => {
+                input.addEventListener('input', function() {
+                    this.style.borderColor = '#dce4ec';
+                    if (this.id === 'password') {
+                        errorMessage.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Reset gender error styling
+            document.querySelectorAll('input[name="patient_gender"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    document.querySelector('.gender-options').style.outline = 'none';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
