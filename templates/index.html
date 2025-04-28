@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Medical Certificate Generator</title>
+  <style>
+    /* Reset some basic styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f6fc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="date"] {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="date"]:focus {
+      border-color: #4f8ef7;
+    }
+
+    button {
+      padding: 12px;
+      background-color: #4f8ef7;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #3b6ed8;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      input[type="text"],
+      input[type="date"] {
+        font-size: 14px;
+      }
+
+      button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Generate Medical Certificate</h2>
+  <form action="/generate_pdf" method="POST">
+    
+    <label for="patient_name">Patient Name</label>
+    <input type="text" id="patient_name" name="patient_name" required>
+
+    <label for="patient_age">Patient Age</label>
+    <input type="text" id="patient_age" name="patient_age" required>
+
+    <label for="patient_gender">Patient Gender</label>
+    <input type="text" id="patient_gender" name="patient_gender" placeholder="Male/Female/Other" required>
+
+    <label for="test_date">Test Date</label>
+    <input type="date" id="test_date" name="test_date" required>
+
+    <label for="report_date">Report Date</label>
+    <input type="date" id="report_date" name="report_date" required>
+
+    <label for="referring_doctor">Referring Doctor</label>
+    <input type="text" id="referring_doctor" name="referring_doctor">
+
+    <label for="signing_doctor">Signing Doctor</label>
+    <input type="text" id="signing_doctor" name="signing_doctor">
+
+    <button type="submit">Generate PDF</button>
+
+  </form>
+</div>
+
+</body>
+</html>
