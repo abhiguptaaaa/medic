@@ -91,6 +91,7 @@ def generate_pdf():
         'text_5rysh': form_data.get('referring_doctor', ''),
         'text_6njmy': form_data.get('patient_name', ''),
         'text_10vfgg': form_data.get('test_date', ''),
+        'text_11aaku': form_data.get('signing_doctor', ''),
         'text_7wpva': form_data.get('patient_age', ''),
         # If you have corresponding form fields for these in your HTML:
         'text_8uoj': form_data.get('referring_doctor', ''), # Replace 'some_other_field_1'
